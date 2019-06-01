@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void reload(String url, boolean isNew) {
+        loadingProgress.setVisibility(View.VISIBLE);
         if (isNew)
             urls.add(parse_url);
         parse_url = url;
