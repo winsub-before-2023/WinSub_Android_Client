@@ -46,6 +46,8 @@ public class InfoActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setCheckedItem(R.id.nav_info);
+
         ProfileAdapter myAdapter = new ProfileAdapter(ProfileArrayList);
         mRecyclerView.setAdapter(myAdapter);
         addDevs();

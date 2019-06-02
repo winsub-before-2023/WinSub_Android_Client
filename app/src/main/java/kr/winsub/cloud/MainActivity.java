@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setCheckedItem(R.id.nav_home);
+
         MainPageTask asyncTask = new MainPageTask();
         asyncTask.execute();
     }
