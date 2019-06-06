@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     ProgressBar loadingProgress;
     String parse_url = "https://cloud.winsub.kr/";
     ArrayList<String> urls = new ArrayList<>();
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         loadingProgress = findViewById(R.id.loadingProgress);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -176,5 +177,11 @@ public class MainActivity extends AppCompatActivity
             }
             parsed.add(new Lists(name, size, url, isFile)); // Add values to array list
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 }
