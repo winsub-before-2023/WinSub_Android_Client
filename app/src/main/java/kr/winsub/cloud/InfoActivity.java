@@ -55,7 +55,7 @@ public class InfoActivity extends AppCompatActivity
          *  Add Developers info here
          */
         ProfileArrayList.add(new Profile("Windows", "Lead Developer, Web Developer", "https://winsub.kr"));
-        ProfileArrayList.add(new Profile("미대오빠/recustomKR", "Web Developer", "https://winsub.kr"));
+        ProfileArrayList.add(new Profile("RecustomKR", "Web Developer", "https://winsub.kr"));
         ProfileArrayList.add(new Profile("Kongjak", "Android Developer", "https://kongjak.com"));
         ProfileArrayList.add(new Profile("천상의나무", "Telegram Bot Developer", "https://github.com/newpremium"));
     }
