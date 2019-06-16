@@ -1,6 +1,9 @@
 package kr.winsub.cloud;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkConnection();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mRecyclerView = findViewById(R.id.list);
@@ -81,6 +87,21 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void checkConnection() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if (!isConnected) {
+            Toast.makeText(getApplicationContext(), getString(R.string.no_connection), Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -110,6 +131,12 @@ public class MainActivity extends AppCompatActivity
         asyncTask.execute();
 
         System.out.println(urls.size());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
     private class MainPageTask extends AsyncTask<String, Object, Void> {
@@ -177,11 +204,5 @@ public class MainActivity extends AppCompatActivity
             }
             parsed.add(new Lists(name, size, url, isFile)); // Add values to array list
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_home);
     }
 }
