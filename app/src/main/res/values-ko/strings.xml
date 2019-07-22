@@ -18,4 +18,6 @@
     <string name="no_connection">인터넷 연결을 확인하세요!</string>
 
     <string name="admin_email">admin@winsub.kr</string>
+
+    <string name="folder_is_empty">폴더가 비어있습니다!</string>
 </resources>

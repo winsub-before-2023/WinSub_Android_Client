@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity
 
             if (isEmpty == 0) {
                 size = url = "";
-                name = "폴더가 비어있습니다!";
+                name = getString(R.string.folder_is_empty);
             }
             parsed.add(new Lists(name, size, url, isFile)); // Add values to array list
         }
