@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,7 @@ public class InfoActivity extends AppCompatActivity
     RecyclerView.LayoutManager mLayoutManager;
     ArrayList<Profile> ProfileArrayList = new ArrayList<>();
     private NavigationView navigationView;
+    private RelativeLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class InfoActivity extends AppCompatActivity
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mainLayout = findViewById(R.id.mainLayout);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -91,6 +96,8 @@ public class InfoActivity extends AppCompatActivity
             Intent chooser = Intent.createChooser(email, title);
             if (email.resolveActivity(getPackageManager()) != null) {
                 startActivity(chooser);
+            } else {
+                Snackbar.make(mainLayout, getString(R.string.intent_chooser_no_app), Snackbar.LENGTH_LONG).show();
             }
         }
 
