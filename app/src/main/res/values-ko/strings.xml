@@ -5,12 +5,9 @@
     <string name="nav_header_title">윈섭</string>
     <string name="nav_header_subtitle">admin@winsub.kr</string>
     <string name="nav_header_desc">네비게이션 헤더</string>
-    <string name="action_settings">설정</string>
 
     <string name="menu_home">홈</string>
     <string name="menu_info">안내</string>
-    <string name="menu_slideshow">슬라이드</string>
-    <string name="menu_tools">도구</string>
     <string name="menu_share">공유</string>
     <string name="menu_help">문의</string>
 
