@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">윈섭 클라우드</string>
+    <string name="navigation_drawer_open">네비게이션 드로워 열기</string>
+    <string name="navigation_drawer_close">네비게이션 드로워 닫기</string>
+    <string name="nav_header_title">윈섭</string>
+    <string name="nav_header_subtitle">admin@winsub.kr</string>
+    <string name="nav_header_desc">네비게이션 헤더</string>
+    <string name="action_settings">설정</string>
+
+    <string name="menu_home">홈</string>
+    <string name="menu_info">안내</string>
+    <string name="menu_slideshow">슬라이드</string>
+    <string name="menu_tools">도구</string>
+    <string name="menu_share">공유</string>
+    <string name="menu_help">문의</string>
+
+    <string name="intent_chooser_title">보내기</string>
+
+    <string name="intent_chooser_no_app">메일을 보내기 위한 앱을 찾을 수 없습니다.</string>
+
+    <string name="no_connection">인터넷 연결을 확인하세요!</string>
+
+    <string name="admin_email">admin@winsub.kr</string>
+</resources>
