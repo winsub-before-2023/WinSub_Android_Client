@@ -1,6 +1,7 @@
 package kr.winsub.cloud;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -81,8 +82,16 @@ public class InfoActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_help) {
+            Intent email = new Intent(Intent.ACTION_SENDTO);
+            email.setData(Uri.parse("mailto:"));
+            String[] address = {getString(R.string.admin_email)};
+            email.putExtra(Intent.EXTRA_EMAIL, address);
+            String title = getResources().getString(R.string.intent_chooser_title);
+            Intent chooser = Intent.createChooser(email, title);
+            if (email.resolveActivity(getPackageManager()) != null) {
+                startActivity(chooser);
+            }
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

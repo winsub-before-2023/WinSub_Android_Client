@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,9 +17,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     String parse_url = "https://cloud.winsub.kr/";
     ArrayList<String> urls = new ArrayList<>();
     private NavigationView navigationView;
+    private RelativeLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,8 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mainLayout = findViewById(R.id.mainLayout);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -113,8 +120,18 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_help) {
+            Intent email = new Intent(Intent.ACTION_SENDTO);
+            email.setData(Uri.parse("mailto:"));
+            String[] address = {getString(R.string.admin_email)};
+            email.putExtra(Intent.EXTRA_EMAIL, address);
+            String title = getResources().getString(R.string.intent_chooser_title);
+            Intent chooser = Intent.createChooser(email, title);
+            if (email.resolveActivity(getPackageManager()) != null) {
+                startActivity(chooser);
+            } else {
+                Snackbar.make(mainLayout, getString(R.string.intent_chooser_no_app), Snackbar.LENGTH_LONG).show();
+            }
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
