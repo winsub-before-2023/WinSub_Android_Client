@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity
                 for (Element item : list) { // loop
                     name = item.select("td:nth-child(1) > a"); // Get File Name
                     size = item.select("td:nth-child(2)"); // Get File Size
-                    icon = item.select("td:nth-child(1) > span"); // Get item icon
+                    icon = item.select("td:nth-child(1) > i"); // Get item icon
                     String file_url = name.attr("abs:href"); // Parse REAL url(href)
 
                     publishProgress(name.text(), size.text(), file_url, icon.attr("class"), name.size()); // Send it!
@@ -209,11 +209,15 @@ public class MainActivity extends AppCompatActivity
             String url = (String) params[2];
             String icon_class = (String) params[3];
             int isEmpty = (int) params[4];
-            boolean isFile = false;
-            if (icon_class.equals("glyphicon glyphicon-folder-close"))
+            boolean isFile;
+            if (icon_class.equals("fa fa-folder fa-fw"))
                 isFile = false;
-            else if (icon_class.equals("glyphicon glyphicon-file"))
+            else if (icon_class.equals("fa fa-file-archive-o fa-fw"))
                 isFile = true;
+            else
+                isFile = true;
+                // If icon class not match anything, Just open the link in browser
+                // or it will produce blank screen
 
             if (isEmpty == 0) {
                 size = url = "";
